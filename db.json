@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@gmail.com",
+      "password": "abc123",
+      "confirmPassword": "abc123"
+    },
+    {
+      "firstName": "Nandha",
+      "lastName": "Kumar",
+      "email": "nandha@gmail.com",
+      "password": "abc123",
+      "confirmPassword": "abc123",
+      "id": 3
+    },
+    {
+      "firstName": "Walt",
+      "lastName": "Whitman",
+      "email": "walt@gmail.com",
+      "password": "abc123",
+      "confirmPassword": "abc123",
+      "id": 4
+    },
+    {
+      "firstName": "jane",
+      "lastName": "wilson",
+      "email": "john@gmail.com",
+      "password": "abc123",
+      "confirmPassword": "abc123",
+      "id": 6
+    },
+    {
+      "firstName": "Gale",
+      "lastName": "Williams",
+      "email": "gale@gmail.com",
+      "password": "abc123",
+      "confirmPassword": "abc123",
+      "id": 7
+    }
+  ]
+}
