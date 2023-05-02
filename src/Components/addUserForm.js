@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import validationSchema from "../Validation/inputValidation";
-import './addUserForm.css'
+import "./addUserForm.css";
 
 function Form() {
   const [inputData, setInputData] = useState({
@@ -11,17 +11,18 @@ function Form() {
     email: "",
     password: "",
     confirmPassword: "",
+    image: "",
   });
 
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
 
-  let localstoragetoken = localStorage.getItem('token')
+  let localstoragetoken = localStorage.getItem("token");
   //console.log(localstoragetoken)
 
   const handleSubmit = async (event) => {
-    event.preventDefault();  
+    event.preventDefault();
 
     let formData = {
       firstName: event.target[0].value,
@@ -29,23 +30,25 @@ function Form() {
       email: event.target[2].value,
       password: event.target[3].value,
       confirmPassword: event.target[4].value,
-      image:event.target[5].value
+      image: inputData.image,
     };
 
-    console.log(formData.image)
+    console.log(formData);
 
     const isValid = await validationSchema.isValid(formData);
 
     if (isValid) {
       axios
-        .post("http://localhost:8081/database/post", formData,{headers: {
-          'Authorization': localstoragetoken,
-          'Content-Type': 'multipart/form-data'
-        }})
+        .post("http://localhost:8081/database/post", formData, {
+          headers: {
+            Authorization: localstoragetoken,
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((res) => {
-          console.log(res)
+          console.log(res);
           alert("Data posted successfully");
-          navigate("/table");          
+          navigate("/table");
         });
     } else {
       validationSchema
@@ -53,13 +56,15 @@ function Form() {
         .then(() => {
           setErrors({});
           axios
-            .post("http://localhost:8081/database/post", formData,{headers: {
-              'Authorization': localstoragetoken,
-              'Content-Type': 'multipart/form-data'
-            }})
+            .post("http://localhost:8081/database/post", formData, {
+              headers: {
+                Authorization: localstoragetoken,
+                "Content-Type": "multipart/form-data",
+              },
+            })
             .then((res) => {
               alert("Data posted successfully");
-              navigate("/table");              
+              navigate("/table");
             });
         })
         .catch((error) => {
@@ -78,7 +83,7 @@ function Form() {
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div>
             <label htmlFor="firstName">First Name</label>
-            <input              
+            <input
               type="text"
               name="firstName"
               className="form-control"
@@ -144,10 +149,20 @@ function Form() {
               <div className="text-danger">{errors.confirmPassword}</div>
             )}
           </div>
-          <label htmlFor="image">Image</label>
-          <input type="file" name="image" className="form-control" onChange={(e) =>
-                setInputData({ ...inputData, image: e.target.value })
-              } />
+          <div>
+            <label htmlFor="image">Image</label>
+            <input
+              type="file"
+              name="image"
+              className="form-control"
+              onChange={(e) =>
+                setInputData({
+                  ...inputData,
+                  image: (e.target.files[0]),
+                })
+              }
+            />
+          </div>
           <button className="btn btn-primary mt-3">Submit</button>
         </form>
         <div>
@@ -155,9 +170,11 @@ function Form() {
             <button className="btn btn-primary mt-3">Table Page</button>
           </Link>
           <Link to="/login">
-            <button className="btn btn-primary mt-3 login-button">Login Page</button>
+            <button className="btn btn-primary mt-3 login-button">
+              Login Page
+            </button>
           </Link>
-        </div>        
+        </div>
       </div>
     </div>
   );
