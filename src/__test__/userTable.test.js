@@ -1,10 +1,10 @@
 import React from 'react'
 import {render,fireEvent, queryByTestId,screen} from '@testing-library/react';
 import user from '@testing-library/user-event'
-import Table from './Table';
+import Table from '../Components/userTable';
 import {BrowserRouter} from 'react-router-dom';
 import axios from 'axios';
-import {fetchData} from './myModule'; 
+
 
 jest.mock('axios');
 

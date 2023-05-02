@@ -15,19 +15,27 @@ function Update() {
     confirmPassword: "",
   });
 
+  let localstoragetoken = localStorage.getItem('token');
+
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/database/put/" + id)
+      .get("http://localhost:8081/database/put/" + id,{headers: {
+        'Authorization': localstoragetoken,
+        'Content-Type': 'multipart/form-data'
+      }})
       .then((res) => setInputData(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  },[]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put("http://localhost:8081/database/put/" + id, inputData)
+      .put("http://localhost:8081/database/put/" + id, inputData,{headers: {
+        'Authorization': localstoragetoken,
+        'Content-Type': 'application/json'
+      }})
       .then((res) => {
         alert("Data updated successfully");
         navigate("/table");
@@ -111,7 +119,7 @@ function Update() {
                   })
                 }
               />
-            </div>
+            </div>            
             <button className="btn btn-primary mt-3">Update</button>
           </form>
         </div>

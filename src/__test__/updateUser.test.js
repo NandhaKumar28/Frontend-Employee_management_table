@@ -1,11 +1,11 @@
 import React from 'react'
 import {render,fireEvent, queryByTestId,screen} from '@testing-library/react';
 import user from '@testing-library/user-event'
-import Form from './Form';
+import Update from '../Components/updateUserForm';
 import {BrowserRouter} from 'react-router-dom'
 
 test("renders correctly",()=>{    
-    render(<BrowserRouter><Form handleSubmit={handleSubmit}/></BrowserRouter>)
+    render(<BrowserRouter><Update /></BrowserRouter>)
 
     const inputElement = screen.getAllByRole('textbox');
     const button = screen.getAllByRole('button');

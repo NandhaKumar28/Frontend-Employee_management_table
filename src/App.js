@@ -1,8 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Table from "./Table";
-import Form from "./Form";
-import Update from "./update";
+import Table from "../src/Components/userTable";
+import Form from "../src/Components/addUserForm";
+import Update from "../src/Components/updateUserForm";
+import UserLoginForm from "../src/Components/userLoginForm";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/table" element={<Table />}></Route>
         <Route path="/" element={<Form />}></Route>
         <Route path="/update/:id" element={<Update />}></Route>
+        <Route path="/login" element={<UserLoginForm />}></Route>
       </Routes>
     </BrowserRouter>
   );

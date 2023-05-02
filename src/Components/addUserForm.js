@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import validationSchema from "./Validation/inputValidation";
+import validationSchema from "../Validation/inputValidation";
+import './addUserForm.css'
 
 function Form() {
   const [inputData, setInputData] = useState({
@@ -16,8 +17,11 @@ function Form() {
 
   const navigate = useNavigate();
 
+  let localstoragetoken = localStorage.getItem('token')
+  //console.log(localstoragetoken)
+
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault();  
 
     let formData = {
       firstName: event.target[0].value,
@@ -25,18 +29,23 @@ function Form() {
       email: event.target[2].value,
       password: event.target[3].value,
       confirmPassword: event.target[4].value,
+      image:event.target[5].value
     };
 
-    //console.log(formData)
+    console.log(formData.image)
 
     const isValid = await validationSchema.isValid(formData);
 
     if (isValid) {
       axios
-        .post("http://localhost:8081/database/post", formData)
+        .post("http://localhost:8081/database/post", formData,{headers: {
+          'Authorization': localstoragetoken,
+          'Content-Type': 'multipart/form-data'
+        }})
         .then((res) => {
+          console.log(res)
           alert("Data posted successfully");
-          navigate("/table");
+          navigate("/table");          
         });
     } else {
       validationSchema
@@ -44,10 +53,13 @@ function Form() {
         .then(() => {
           setErrors({});
           axios
-            .post("http://localhost:8081/database/post", formData)
+            .post("http://localhost:8081/database/post", formData,{headers: {
+              'Authorization': localstoragetoken,
+              'Content-Type': 'multipart/form-data'
+            }})
             .then((res) => {
               alert("Data posted successfully");
-              navigate("/table");
+              navigate("/table");              
             });
         })
         .catch((error) => {
@@ -60,31 +72,13 @@ function Form() {
     }
   };
 
-  const handlesubmit1 = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("image", event.target.image.files[0]);
-
-    axios
-      .post("http://localhost:8081/picupload", formData)
-      .then((res) => {
-        alert("Picture posted successfully");
-      })
-      .catch((error) => {
-        alert("Picture posting unsuccessful");
-      });
-    event.target.reset();
-  };
-
   return (
     <div className="d-flex w-100 vh-100 justify-content-center align-items-center">
       <div className="w-50 border bg-info text-black p-5">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div>
             <label htmlFor="firstName">First Name</label>
-            <input
-              data-testid="fnameinput"
+            <input              
               type="text"
               name="firstName"
               className="form-control"
@@ -150,24 +144,20 @@ function Form() {
               <div className="text-danger">{errors.confirmPassword}</div>
             )}
           </div>
+          <label htmlFor="image">Image</label>
+          <input type="file" name="image" className="form-control" onChange={(e) =>
+                setInputData({ ...inputData, image: e.target.value })
+              } />
           <button className="btn btn-primary mt-3">Submit</button>
         </form>
         <div>
           <Link to="/table">
             <button className="btn btn-primary mt-3">Table Page</button>
           </Link>
-        </div>
-        <form
-          className="mt-3"
-          onSubmit={handlesubmit1}
-          method="POST"
-          action="/picupload"
-          encType="multipart/form-data"
-        >
-          <label htmlFor="image">Image</label>
-          <input type="file" name="image" className="form-control" />
-          <button className="btn btn-primary mt-3">Submit</button>
-        </form>
+          <Link to="/login">
+            <button className="btn btn-primary mt-3 login-button">Login Page</button>
+          </Link>
+        </div>        
       </div>
     </div>
   );

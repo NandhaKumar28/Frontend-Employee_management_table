@@ -21,6 +21,9 @@ const validationSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password")], "Passwords must match*")
     .required("This field is required*"),
+  image: yup
+  .mixed()
+  .required()  
 });
 
 export default validationSchema;
