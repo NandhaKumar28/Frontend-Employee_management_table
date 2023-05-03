@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./userLoginForm.css";
 
+
 function UserLoginForm() {
   const [token, setToken] = useState();
   const [inputData, setInputData] = useState({
@@ -36,6 +37,7 @@ function UserLoginForm() {
           console.log(res);
           localStorage.setItem("token", res.data.token);
           alert("Login successful");
+          navigate("/table");
         }
       })
       .catch((err) => {

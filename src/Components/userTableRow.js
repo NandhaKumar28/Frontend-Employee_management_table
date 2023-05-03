@@ -5,16 +5,16 @@ import './userTableRow.css'
 function TableRow(props) {
   //console.log(props);
   const { details } = props;
-  const { ID, firstName, lastName, email, password } = details;
+  const { ID, firstName, lastName, email, image_url } = details;
   let localstoragetoken = localStorage.getItem('token');
 
   return (
     <tr>
       <td>{ID}</td>
+      <td>{<img src={image_url} alt="profile picture" className="profile-pic"/>}</td>
       <td>{firstName}</td>
       <td>{lastName}</td>
-      <td>{email}</td>
-      <td>{password}</td>
+      <td>{email}</td>      
       <td>
         <Link
           className="text-decoration-none btn btn-success"
@@ -45,10 +45,11 @@ function TableRow(props) {
         }})
         .then((res) => {
           alert("Record Deleted");
+          window.location.reload(true) //Reloads the page on deletion of a record
         })
         .catch((error) => {
           console.log("Error deleting");
-        });
+        });       
     } else {
       console.log("Delete cancelled");
     }

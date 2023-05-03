@@ -65,6 +65,7 @@ function Form() {
             .then((res) => {
               alert("Data posted successfully");
               navigate("/table");
+              window.location.reload(true) //Reloads the page on deletion of a record
             });
         })
         .catch((error) => {

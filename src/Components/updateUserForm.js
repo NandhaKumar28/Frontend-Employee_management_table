@@ -11,21 +11,20 @@ function Update() {
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
-    confirmPassword: "",
+    image: ""
   });
-
+  
   let localstoragetoken = localStorage.getItem('token');
 
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/database/put/" + id,{headers: {
+      .get(`http://localhost:8081/database/getprofile/${id}`,{headers: {
         'Authorization': localstoragetoken,
         'Content-Type': 'multipart/form-data'
       }})
-      .then((res) => setInputData(res.data))
+      .then((res) => setInputData(res.data))      
       .catch((err) => console.log(err));
   },[]);
 
@@ -92,34 +91,22 @@ function Update() {
                   setInputData({ ...inputData, email: e.target.value })
                 }
               />
-            </div>
+            </div>              
             <div>
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={inputData.password}
-                onChange={(e) =>
-                  setInputData({ ...inputData, password: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                className="form-control"
-                value={inputData.confirmPassword}
-                onChange={(e) =>
-                  setInputData({
-                    ...inputData,
-                    confirmPassword: e.target.value,
-                  })
-                }
-              />
-            </div>            
+            <label htmlFor="image">Image</label>
+            <input
+              type="file"
+              name="image"
+              className="form-control"
+              value={inputData.image}
+              onChange={(e) =>
+                setInputData({
+                  ...inputData,
+                  image: e.target.files[0],
+                })
+              }
+            />
+          </div>     
             <button className="btn btn-primary mt-3">Update</button>
           </form>
         </div>

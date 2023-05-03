@@ -8,12 +8,13 @@ function Table() {
   const [data, setData] = useState([]);
 
    let localstoragetoken = localStorage.getItem('token')
+   
   // console.log(localstoragetoken)
 
-  let headers = {
-    'Content-Type':"application/json",
-    'Authorization':`Bearer ${localstoragetoken}`
-  }
+  // let headers = {
+  //   'Content-Type':"application/json",
+  //   'Authorization':`Bearer ${localstoragetoken}`
+  // }
 
   const { people } = data;
   //console.log(data)
@@ -31,7 +32,7 @@ function Table() {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  });
   return (
     <div className="container mt-5">
       <div>
@@ -43,10 +44,10 @@ function Table() {
         <thead>
           <tr>
             <th>ID</th>
+            <th>Profile Picture</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Email</th>
-            <th>Password</th>
+            <th>Email</th>            
             <th>Action</th>
           </tr>
         </thead>
