@@ -45,7 +45,7 @@ function TableRow(props) {
         }})
         .then((res) => {
           alert("Record Deleted");
-          window.location.reload(true) //Reloads the page on deletion of a record
+          //window.location.reload(true) //Reloads the page on deletion of a record
         })
         .catch((error) => {
           console.log("Error deleting");
