@@ -46,10 +46,15 @@ function Form() {
           },
         })
         .then((res) => {
+          if(res.data.message === 'Email already exists'){
+            alert("Email already exists")
+            return;
+          }
           console.log(res);
           alert("Data posted successfully");
           navigate("/table");
         });
+        
     } else {
       validationSchema
         .validate(formData, { abortEarly: false })

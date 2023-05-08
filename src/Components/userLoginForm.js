@@ -33,6 +33,7 @@ function UserLoginForm() {
         ) {
           alert("Login failed");
           localStorage.setItem("token", "undefined");
+          console.log(res.data.message)
         } else {
           console.log(res);
           localStorage.setItem("token", res.data.token);
@@ -40,7 +41,7 @@ function UserLoginForm() {
           navigate("/table");
         }
       })
-      .catch((err) => {
+      .catch((err) => { 
         console.log(err);
       });
   };

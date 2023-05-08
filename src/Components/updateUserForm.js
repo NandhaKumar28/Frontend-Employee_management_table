@@ -61,6 +61,10 @@ function Update() {
         },
       })
       .then((res) => {
+        if(res.data.message === 'Email already exists'){
+          alert("Email already exists")
+          return;
+        }
         alert("Data updated successfully");
         navigate("/table");
       })
