@@ -175,7 +175,7 @@ function Form() {
           <Link to="/table">
             <button className="btn btn-primary mt-3">Table Page</button>
           </Link>
-          <Link to="/login">
+          <Link to="/">
             <button className="btn btn-primary mt-3 login-button">
               Login Page
             </button>

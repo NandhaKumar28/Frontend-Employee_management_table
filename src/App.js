@@ -10,9 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/table" element={<Table />}></Route>
-        <Route path="/" element={<Form />}></Route>
+        <Route path="/user-registartion" element={<Form />}></Route>
         <Route path="/update/:id" element={<Update />}></Route>
-        <Route path="/login" element={<UserLoginForm />}></Route>
+        <Route path="/" element={<UserLoginForm />}></Route>
       </Routes>
     </BrowserRouter>
   );

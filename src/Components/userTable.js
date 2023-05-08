@@ -36,7 +36,7 @@ function Table() {
   return (
     <div className="container mt-5">
       <div>
-        <Link to="/" className="btn btn-primary">
+        <Link to="/user-registartion" className="btn btn-primary">
           Form Page
         </Link>
       </div>

@@ -75,7 +75,7 @@ function UserLoginForm() {
           <button className="btn btn-primary mt-3" type="submit">
             Login
           </button>
-          <Link to="/">
+          <Link to="/user-registartion">
             <button className="btn btn-primary mt-3 register-button">
               User Registration Page
             </button>
