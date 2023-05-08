@@ -38,17 +38,13 @@ function Update() {
   }, []);
 
   const formData = new FormData();
-  formData.append("firstName", inputData.firstName);
-  console.log(inputData.firstName);
-  formData.append("lastName", inputData.lastName);
-  console.log(inputData.lastName);
-  formData.append("email", inputData.email);
-  console.log(inputData.email);
+  formData.append("firstName", inputData.firstName);  
+  formData.append("lastName", inputData.lastName);  
+  formData.append("email", inputData.email);  
   if (imageFile) {
-    formData.append("image", imageFile);
-    //console.log(inputData.image)
+    formData.append("image", imageFile);    
   }
-  //console.log(formData)
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
