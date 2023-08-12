@@ -3,7 +3,6 @@ import axios from "axios";
 import './userTableRow.css'
 
 function TableRow(props) {
-  //console.log(props);
   const { details } = props;
   const { ID, firstName, lastName, email, image_url } = details;
   let localstoragetoken = localStorage.getItem('token');
@@ -11,7 +10,7 @@ function TableRow(props) {
   return (
     <tr>
       <td>{ID}</td>
-      <td>{<img src={image_url} alt="profile picture" className="profile-pic"/>}</td>
+      <td>{<img src={image_url} alt="Avatar" className="profile-pic"/>}</td>
       <td>{firstName}</td>
       <td>{lastName}</td>
       <td>{email}</td>      
@@ -33,7 +32,6 @@ function TableRow(props) {
   );
 
   function handleDelete(ID) {
-    //console.log(ID)
     const confirm = window.confirm(
       "Are you sure?, Data will be deleted permanantly"
     );

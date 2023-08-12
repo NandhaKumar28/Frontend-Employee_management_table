@@ -48,7 +48,6 @@ function Update() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(imageFile);
     axios
       .put(`http://localhost:8081/database/put/${id}`, formData, {
         headers: {
@@ -65,7 +64,6 @@ function Update() {
         navigate("/table");
       })
       .catch((err) => console.log(err));
-    console.log(formData);
   };
 
   return (

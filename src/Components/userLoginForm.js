@@ -23,9 +23,7 @@ function UserLoginForm() {
       email: event.target[0].value,
       password: event.target[1].value,
     };
-    //console.log(formData)
-    axios
-      .post("http://localhost:8081/user/login", formData)
+    axios.post("http://localhost:8081/user/login", formData)
       .then((res) => {
         if (
           res.data.message === "User doesn't exist" ||
@@ -33,9 +31,7 @@ function UserLoginForm() {
         ) {
           alert("Login failed");
           localStorage.setItem("token", "undefined");
-          console.log(res.data.message)
         } else {
-          console.log(res);
           localStorage.setItem("token", res.data.token);
           alert("Login successful");
           navigate("/table");

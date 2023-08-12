@@ -19,7 +19,6 @@ function Form() {
   const navigate = useNavigate();
 
   let localstoragetoken = localStorage.getItem("token");
-  //console.log(localstoragetoken)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
